@@ -9,6 +9,15 @@ AMovingSplineActor::AMovingSplineActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Spline = CreateDefaultSubobject<USplineComponent>("Spline Component");
+	Spline->SetupAttachment(GetRootComponent());
+
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("Static Mesh");
+	StaticMesh->SetupAttachment(Spline);
+
+	CollisionBox = CreateDefaultSubobject<UBoxComponent>("Collision Box");
+	CollisionBox->SetupAttachment(StaticMesh);
+	
 }
 
 // Called when the game starts or when spawned
